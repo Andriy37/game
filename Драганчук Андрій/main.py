@@ -1,4 +1,4 @@
- random import choice, shuffle
+random import choice, shuffle
 from time import sleep
 from PyQt5.QtWidgets import QApplication
 
@@ -47,7 +47,7 @@ new_question()
 def check():
     for answer in radio_buttons:
         if answer.isChecked():
-            if answer.text()==lb_right_answer.text():
+            if answer.text() == answer.text():
                 cur_q.got_right()
                 lb_result.setText("Вірно!")
                 answer.setChecked(False)
@@ -57,7 +57,7 @@ def check():
         cur_q.got_wrong()
 
 def click_ok():
-    if btn_next.text()=='Відповісти':
+    if btn_next.text()==('Відповісти'):
         check()
         gb_question.hide()
         gb_answer.show()
@@ -93,13 +93,13 @@ def menu_generation():
          f'Успішність:{round(c,2)}%'
     lb_statistic.setText(text)
     menu_win.show()
-    window.hide()
+    main_win.hide()
 
 btn_menu.clicked.connect(menu_generation)
 
 def back_menu():
     menu_win.hide()
-    window.show()
+    main_win.show()
 
 btn_back.clicked.connect(back_menu)
 
@@ -122,5 +122,5 @@ def add_question():
 btn_addquestion.clicked.connect(add_question)
 
 
-window.show()
+main_win.show()
 app.exec()
