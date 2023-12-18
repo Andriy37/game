@@ -85,8 +85,33 @@ layout_notes.addLayout(col_2)
 
 notes_window.setLayout(layout_notes)
 
+def add_tag():
+    if list_notes.selectedItems():
+        key = list_notes.selectedItems()[0].text()
+        teg = field_teg.text()
+        if not tag in notes[key]['теги']:
+            notes[key]["теги"].append(tag)
+            list_tags.addItem(tag)
+            field_teg.clear()
+        with open("notes_data.json", "w") as file:
+            json.dump(notes, file, sort_keys=True, ensure_ascii=False)
+        print(notes)
+    else:
+        print("замітка для додавання тега не обрана")
 
+def del_tag():
 
+def search_tag():
+
+def save_note():
+    if list_notes.selectedItems():
+        key = list_notes.selectedItems()[0].text()
+        notes[key]["текст"] = fiend_text.toPlainText()
+        with open("notes_data.json", "w") as file:
+            json.dump(notes, file, sort_keys=True, ensure_ascii=False)
+        print(notes)
+    else:
+        print("Замітка для збереження не вибрана!")
 
 
 def add_note():
@@ -94,8 +119,7 @@ def add_note():
     if ok and note_name != "":
         notes[note_name] = {'текст' : "", 'теги' : [] }
         list_notes.addItem(note_name)
-        
-btn_note_create.clicked.connect(add_note) 
+
 
 def del_note():
     if list_notes.selectedItems():
@@ -112,13 +136,17 @@ def del_note():
 
 
 
-        
+btn_note_create.clicked.connect(add_note) 
 
-
-       
 btn_note_del.clicked.connect(del_note)
  
+btn_note_save.clicked.connect(save_note)
 
+btn_teg_search.clicked.connect(search_tag)
+
+btn_teg_add.clicked.connect(add_tag)
+
+btn_teg_del.clicked.connect(del_tag)
 
 notes_window.show()
 app.exec_()
